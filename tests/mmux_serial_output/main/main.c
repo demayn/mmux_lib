@@ -8,9 +8,12 @@
 #include <string.h>
 #include "driver/uart.h"
 #include "esp_log.h"
+#include "mmux.h"
 
 void app_main(void)
 {
+    mmux mux;
+    mmux_begin(&mux);
     ESP_LOGI("MMUX", "test 123 ¹⁰³⁶⁹⁷ⁿ⁸⁵⁵⁴");
     gpio_config_t out_cfg =
         {

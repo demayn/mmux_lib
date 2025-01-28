@@ -6,7 +6,7 @@ execute_process(
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 
-idf_component_register(SRCS "i2c_lcd_pcf8574.c"
+idf_component_register(SRCS "mmux.c"
                     INCLUDE_DIRS "include"
                     REQUIRES "driver")
                     

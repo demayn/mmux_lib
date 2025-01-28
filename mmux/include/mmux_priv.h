@@ -1,5 +1,7 @@
 #include "mmux.h"
 
+#define TAG "MMUX"
+
 #ifndef LIB_VERSION
 #define LIB_VERSION "x.x.x"
 #endif
@@ -24,4 +26,4 @@ enum bluebox_datasets
 
 #define DEFAULT_COMP_COEFFS {16, 0}
 
-void mmux_set_mux(mmux &device);
+void mmux_set_mux(mmux *device, uint8_t channel);

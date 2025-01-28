@@ -5,12 +5,13 @@
 #include <rom/ets_sys.h>
 #include <string.h>
 #include "driver/uart.h"
+#include "esp_log.h"
 
 #define MMUX_NUM_FREQ_COEFF 4
 #define MMUX_NUM_TEMP_COEFF 3
 #define MMUX_NUM_COMP_COEFF 2
 
-typedef struct mmux_config_t
+typedef struct
 {
     // GPIO Shift Register
     gpio_num_t data;  // shift register data input
@@ -40,9 +41,9 @@ typedef struct mmux_config_t
     uint8_t num_close_vals;  // how many values close to one another are sufficient?
     double delta_close_vals; // how close must the values be together?
     uint16_t num_sensors;
-};
+} mmux_config_t;
 
-typedef struct mmux
+typedef struct
 {
     gpio_num_t data;  // shift register data input
     gpio_num_t srclk; // shift register data clock
@@ -81,10 +82,13 @@ typedef struct mmux
     bool *use_steinhart;
   
     double (*comp_coeffs)[MMUX_NUM_COMP_COEFF];
-};
+} mmux;
 
-void mmux_init(mmux_config_t &config, mmux &device);
-esp_err_t mmux_begin(mmux &device);
+void mmux_init(mmux_config_t *config, mmux *device);
+esp_err_t mmux_begin(mmux *device);
 void mmux_version(char buf[6]);
-void mmux_end(mmux &device);
-void set_freq_coeffs(mmux &device, uint16_t channel, double _freq_coeffs[MMUX_NUM_FREQ_COEFF]);
+void mmux_end(mmux *device);
+void set_freq_coeffs(mmux *device, uint16_t channel, double _freq_coeffs[MMUX_NUM_FREQ_COEFF]);
+void set_temp_coeffs();
+void set_comp_coeffs();
+void set_limits();
