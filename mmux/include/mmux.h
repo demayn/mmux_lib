@@ -147,4 +147,7 @@ void mmux_scaleFrequencies(mmux *device, double *freq_raw_vals, double *freq_val
 void mmux_scaleTemperatures(mmux *device, double *temp_raw_vals, double *temp_vals);
 void mmux_compensateTemperature(mmux *device, double *freq_vals, double *temp_vals, double *freq_vals_comp);
 
+int mmux_write_bytes_ext(mmux *device, const void *src, size_t size);
+int mmux_read_bytes_ext(mmux *device, void *buf, uint32_t length, TickType_t ticks_to_wait);
+
 esp_err_t mmux_measure(mmux *device, double *freq_raw_vals, double *temp_raw_vals);

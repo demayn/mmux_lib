@@ -484,3 +484,13 @@ void mmux_compensateTemperature(mmux *device, double *freq_vals, double *temp_va
         }
     }
 }
+
+int mmux_write_bytes_ext(mmux *device, const void *src, size_t size)
+{
+    return uart_write_bytes(device->ext_uart, src, size);
+}
+
+int mmux_read_bytes_ext(mmux *device, void *buf, uint32_t length, TickType_t ticks_to_wait)
+{
+    return uart_read_bytes(device->ext_uart, buf, length, ticks_to_wait);
+}
